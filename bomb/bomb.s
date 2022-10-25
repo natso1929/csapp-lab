@@ -479,11 +479,11 @@ Disassembly of section .text:
   401082:	74 4e                	je     4010d2 <phase_5+0x70>
   401084:	e8 b1 03 00 00       	callq  40143a <explode_bomb>
   401089:	eb 47                	jmp    4010d2 <phase_5+0x70>
-  40108b:	0f b6 0c 03          	movzbl (%rbx,%rax,1),%ecx
+  40108b:	0f b6 0c 03          	movzbl (%rbx,%rax,1),%ecx // 这一部分对输入的值做了变形，所以并不是直接输入flyers就行
   40108f:	88 0c 24             	mov    %cl,(%rsp)
   401092:	48 8b 14 24          	mov    (%rsp),%rdx
   401096:	83 e2 0f             	and    $0xf,%edx
-  401099:	0f b6 92 b0 24 40 00 	movzbl 0x4024b0(%rdx),%edx
+  401099:	0f b6 92 b0 24 40 00 	movzbl 0x4024b0(%rdx),%edx // flyers 藏在 0x4024b0 这个地址的内存里
   4010a0:	88 54 04 10          	mov    %dl,0x10(%rsp,%rax,1)
   4010a4:	48 83 c0 01          	add    $0x1,%rax
   4010a8:	48 83 f8 06          	cmp    $0x6,%rax
@@ -702,8 +702,8 @@ Disassembly of section .text:
   401338:	41 54                	push   %r12
   40133a:	55                   	push   %rbp
   40133b:	53                   	push   %rbx
-  40133c:	48 89 fb             	mov    %rdi,%rbx
-  40133f:	48 89 f5             	mov    %rsi,%rbp
+  40133c:	48 89 fb             	mov    %rdi,%rbx //rdi 存了栈的某个地址
+  40133f:	48 89 f5             	mov    %rsi,%rbp // rsi 存了flyers
   401342:	e8 d4 ff ff ff       	callq  40131b <string_length>
   401347:	41 89 c4             	mov    %eax,%r12d
   40134a:	48 89 ef             	mov    %rbp,%rdi
@@ -711,11 +711,11 @@ Disassembly of section .text:
   401352:	ba 01 00 00 00       	mov    $0x1,%edx
   401357:	41 39 c4             	cmp    %eax,%r12d
   40135a:	75 3f                	jne    40139b <strings_not_equal+0x63>
-  40135c:	0f b6 03             	movzbl (%rbx),%eax
-  40135f:	84 c0                	test   %al,%al
+  40135c:	0f b6 03             	movzbl (%rbx),%eax 
+  40135f:	84 c0                	test   %al,%al 
   401361:	74 25                	je     401388 <strings_not_equal+0x50>
-  401363:	3a 45 00             	cmp    0x0(%rbp),%al
-  401366:	74 0a                	je     401372 <strings_not_equal+0x3a>
+  401363:	3a 45 00             	cmp    0x0(%rbp),%al 
+  401366:	74 0a                	je     401372 <strings_not_equal+0x3a> // 这里一看就是遍历 不相等直接返回eax = 1, 所以栈中的值要与flyers对应，后面的汇编就不用看了
   401368:	eb 25                	jmp    40138f <strings_not_equal+0x57>
   40136a:	3a 45 00             	cmp    0x0(%rbp),%al
   40136d:	0f 1f 00             	nopl   (%rax)

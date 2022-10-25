@@ -85,6 +85,7 @@ int main(int argc, char *argv[])
 
     /* I guess this is too easy so far.  Some more complex code will
      * confuse people. */
+    // switch 多答案
     input = read_line();
     phase_3(input);
     phase_defused();
@@ -98,6 +99,8 @@ int main(int argc, char *argv[])
     
     /* Round and 'round in memory we go, where we stop, the bomb blows! */
     input = read_line();
+    // 只需对照ascii码 找
+    // ...1001, ...1111, ...1110, ...0101, ...0110, ...0111
     phase_5(input);
     phase_defused();
     printf("Good work!  On to the next...\n");
