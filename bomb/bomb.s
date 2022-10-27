@@ -550,7 +550,7 @@ Disassembly of section .text:
   40116a:	48 39 f0             	cmp    %rsi,%rax
   40116d:	75 f1                	jne    401160 <phase_6+0x6c>
   40116f:	be 00 00 00 00       	mov    $0x0,%esi
-  401174:	eb 21                	jmp    401197 <phase_6+0xa3>
+  401174:	eb 21                	jmp    401197 <phase_6+0xa3> 以上是将x1...换成7-x1
   401176:	48 8b 52 08          	mov    0x8(%rdx),%rdx
   40117a:	83 c0 01             	add    $0x1,%eax
   40117d:	39 c8                	cmp    %ecx,%eax
@@ -578,7 +578,7 @@ Disassembly of section .text:
   4011cb:	74 05                	je     4011d2 <phase_6+0xde>
   4011cd:	48 89 d1             	mov    %rdx,%rcx
   4011d0:	eb eb                	jmp    4011bd <phase_6+0xc9>
-  4011d2:	48 c7 42 08 00 00 00 	movq   $0x0,0x8(%rdx)
+  4011d2:	48 c7 42 08 00 00 00 	movq   $0x0,0x8(%rdx)  // 以上反转链表
   4011d9:	00 
   4011da:	bd 05 00 00 00       	mov    $0x5,%ebp
   4011df:	48 8b 43 08          	mov    0x8(%rbx),%rax
